@@ -1,7 +1,8 @@
 package goofyhts.torrent.api.test.utilities;
 
-import goofyhts.torrent.api.utilities.Utility;
+import goofyhts.torrentkinesis.utilities.Utility;
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 public class UtilityTest {

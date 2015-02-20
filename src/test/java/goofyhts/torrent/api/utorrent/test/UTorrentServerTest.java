@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import goofyhts.torrent.api.TorrentHttpClient;
-import goofyhts.torrent.api.domain.Torrent;
-import goofyhts.torrent.api.exception.NotImplementedException;
-import goofyhts.torrent.api.utorrent.UTorrentServer;
-import goofyhts.torrent.api.utorrent.constant.UTorrentServerConst;
+import goofyhts.torrentkinesis.TorrentHttpClient;
+import goofyhts.torrentkinesis.domain.Torrent;
+import goofyhts.torrentkinesis.exception.NotImplementedException;
+import goofyhts.torrentkinesis.utorrent.UTorrentServer;
+import goofyhts.torrentkinesis.utorrent.constant.UTorrentServerConst;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
