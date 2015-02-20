@@ -1,4 +1,4 @@
-package goofyhts.torrent.api.utorrent.test;
+package goofyhts.torrentkinesis.utorrent.test;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package goofyhts.torrent.api.test.utilities;
+package goofyhts.torrentkinesis.test.utilities;
 
 import goofyhts.torrentkinesis.utilities.Utility;
 import static org.junit.Assert.*;
