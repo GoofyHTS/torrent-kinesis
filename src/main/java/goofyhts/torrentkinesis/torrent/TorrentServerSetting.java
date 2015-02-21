@@ -1,8 +1,10 @@
 package goofyhts.torrentkinesis.torrent;
 
-public interface TorrentServerSetting<K,V> {
+import java.util.List;
+
+public interface TorrentServerSetting<K> {
 
 	void parseSettings(Object value);
-	V getSetting(K value);
-	void setSetting(V value);
+	K getSetting(String value);
+	List<K> getAllSettings();
 }

@@ -3,8 +3,15 @@ package goofyhts.torrentkinesis.utorrent.json.response;
 public class UTorrentJsonResponse {
 
 	private String build;
+	private Object[][] settings;
 	private String[][] torrents;
 	
+	public Object[][] getSettings() {
+		return settings;
+	}
+	public void setSettings(Object[][] settings) {
+		this.settings = settings;
+	}
 	public String getBuild() {
 		return build;
 	}
@@ -16,5 +23,5 @@ public class UTorrentJsonResponse {
 	}
 	public void setTorrents(String[][] torrents) {
 		this.torrents = torrents;
-	}
+	}	
 }

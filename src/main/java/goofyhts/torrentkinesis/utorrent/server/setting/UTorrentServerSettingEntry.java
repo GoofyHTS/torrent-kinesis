@@ -1,16 +1,17 @@
 package goofyhts.torrentkinesis.utorrent.server.setting;
 
 import goofyhts.torrentkinesis.exception.InvalidTorrentServerSettingException;
+import goofyhts.torrentkinesis.torrent.TorrentServerSettingEntry;
 
-public class UTorrentServerSettingEntry {
+public class UTorrentServerSettingEntry implements TorrentServerSettingEntry {
 	
-	public enum OPTION_TYPE {		
+	public enum SETTING_TYPE {		
 		INTEGER,
 		BOOLEAN,
 		STRING,
 		INVALID;
 		
-		public static OPTION_TYPE fromValue(int value) {
+		public static SETTING_TYPE fromValue(int value) {
 			switch(value) {
 				case 0 : return INTEGER; 
 				case 1 : return BOOLEAN;
@@ -20,46 +21,54 @@ public class UTorrentServerSettingEntry {
 		}
 	}
 
-	private String optionName;
-	private OPTION_TYPE optionType;
-	private String optionValue;
+	private String settingName;
+	private SETTING_TYPE settingType;
+	private String settingValue;
 	
-	public UTorrentServerSettingEntry(String optionName, int optionType, String optionValue) {
-		this.optionName = optionName;
-		this.optionType = OPTION_TYPE.fromValue(optionType);
+	public UTorrentServerSettingEntry(String settingName, int settingType, String settingValue) {
+		this.settingName = settingName;
+		this.settingType = SETTING_TYPE.fromValue(settingType);
 		
-		validateOptionValue(optionValue);
+		validateOptionValue(settingValue);
 		
-		this.optionValue = optionValue;
+		this.settingValue = settingValue;
 	}
 	
 	private void validateOptionValue(String value) {
+		if (this.settingName.equals("offers.404_icon"))
+			return; //skip validation, UTorrent bug. Data type is 0 (Integer) but contains a String
 		try {
-			if (optionType == OPTION_TYPE.INTEGER) {
+			if (settingType == SETTING_TYPE.INTEGER) {
 				Integer.parseInt(value);
 			}			
-			if (optionType == OPTION_TYPE.BOOLEAN) {
+			if (settingType == SETTING_TYPE.BOOLEAN) {
 				if (!(value.equalsIgnoreCase("false") || value.equalsIgnoreCase("true"))) {
 					throw new IllegalArgumentException(); //invoke catch below
 				}
 			}
 		}
 		catch(RuntimeException e) {
-			throw new InvalidTorrentServerSettingException(String.format("Type not valid for %s. Requires a %s data type.", this.optionName, this.optionType));
+			throw new InvalidTorrentServerSettingException(String.format("Type not valid for %s. Requires a %s data type.", this.settingName, this.settingType));
 		}
 	}
+
+	@Override
+	public String getSettingName() {
+		return this.settingName;
+	}
 	
-	public String getOptionName() {
-		return optionName;
+	@Override
+	public String getSettingValue() {
+		return this.settingValue;
 	}
-	public OPTION_TYPE getOptionType() {
-		return optionType;
+
+	@Override
+	public void setSettingValue(String value) {
+		validateOptionValue(value);
+		this.settingValue = value;
 	}
-	public String getOptionValue() {
-		return optionValue;
+	
+	public SETTING_TYPE getSettingType() {
+		return this.settingType;
 	}
-	public void setOptionValue(String optionValue) {
-		validateOptionValue(optionValue);
-		this.optionValue = optionValue;
-	}	
 }

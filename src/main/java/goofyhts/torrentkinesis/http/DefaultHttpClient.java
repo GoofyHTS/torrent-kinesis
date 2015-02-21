@@ -18,6 +18,8 @@ import goofyhts.torrentkinesis.TorrentHttpClient;
 
 public class DefaultHttpClient implements TorrentHttpClient {
 
+	private CloseableHttpClient client;
+	HttpClientContext context;
 	private String username;
 	private String password;
 	
@@ -28,27 +30,45 @@ public class DefaultHttpClient implements TorrentHttpClient {
 	
 	@Override
 	public String getURL(String url) {
-		try(CloseableHttpClient client = HttpClients.createDefault()) {
-			HttpClientContext context = new HttpClientContext();
-			CredentialsProvider credProv = new BasicCredentialsProvider();
-			credProv.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(username, password));
-			context.setCredentialsProvider(credProv);
-			HttpGet httpGet = new HttpGet(url);
-			
-			CloseableHttpResponse response = client.execute(httpGet,context);
-			return IOUtils.toString(response.getEntity().getContent());
-		} catch (ClientProtocolException e) {
+		System.out.println("Request="+url);
+		String responseString = null;
+		try {
+			HttpGet httpGet = new HttpGet(url);		
+			CloseableHttpResponse response = client.execute(httpGet, context);
+			responseString = IOUtils.toString(response.getEntity().getContent());
+		}
+		catch(ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return responseString;
 	}
 
 	@Override
 	public String postURL(String url) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void open() {
+		client = HttpClients.createDefault();	
+		context = new HttpClientContext();
+		CredentialsProvider credProv = new BasicCredentialsProvider();
+		credProv.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(username, password));
+		context.setCredentialsProvider(credProv);
+	}
+
+	@Override
+	public void close() {
+		if (client != null) {
+			try {
+				client.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

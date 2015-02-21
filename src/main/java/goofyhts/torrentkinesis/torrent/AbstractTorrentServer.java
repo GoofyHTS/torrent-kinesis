@@ -2,7 +2,7 @@ package goofyhts.torrentkinesis.torrent;
 
 import goofyhts.torrentkinesis.TorrentHttpClient;
 
-public abstract class AbstractTorrentServer implements TorrentServer {
+public abstract class AbstractTorrentServer<Setting> implements TorrentServer<Setting> {
 
 	protected String baseUrl;
 	protected TorrentHttpClient httpClient;
