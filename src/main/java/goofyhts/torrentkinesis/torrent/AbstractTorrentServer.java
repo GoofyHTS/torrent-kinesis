@@ -1,21 +1,17 @@
-package goofyhts.torrentkinesis;
+package goofyhts.torrentkinesis.torrent;
 
-import goofyhts.torrentkinesis.domain.Torrent;
+import goofyhts.torrentkinesis.TorrentHttpClient;
 
-import java.util.List;
-
-public abstract class TorrentServer {
+public abstract class AbstractTorrentServer implements TorrentServer {
 
 	protected String baseUrl;
 	protected TorrentHttpClient httpClient;
 	
-	public TorrentServer(String baseAddress, TorrentHttpClient httpClient) {
+	public AbstractTorrentServer(String baseAddress, TorrentHttpClient httpClient) {
 		this.baseUrl = baseAddress;
 		this.httpClient = httpClient;
 	}
 	
-	public abstract List<Torrent> getTorrentList();
-
 	public String getBaseAddress() {
 		return baseUrl;
 	}

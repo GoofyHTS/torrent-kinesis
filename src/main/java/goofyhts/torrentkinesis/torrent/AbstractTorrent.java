@@ -1,35 +1,11 @@
-package goofyhts.torrentkinesis.domain;
+package goofyhts.torrentkinesis.torrent;
 
-public class Torrent {
+public abstract class AbstractTorrent {
 
-	public enum TorrentStatus {
-		STARTED(1),
-		CHECKING(2),
-		START_AFTER_CHECK(4),
-		CHECKED(8),
-		ERROR(16),
-		PAUSED(32),
-		QUEUED(64),
-		LOADED(128);
-		
-		private final int value;
-		
-		private TorrentStatus(int value) {
-			this.value = value;
-		}
-	}
-	
-	public Torrent(String[] data) {
-		this.hash = data[0];
-		this.status = Integer.parseInt(data[1]);
-		this.name = data[2];
-		this.size = Integer.parseInt(data[3]);
-	}
-	
 	private String hash;
 	private String name;
 	private int status;
-	private int size; //bytes
+	private long size; //bytes
 	private String sizeInclUnit;
 	private int percentProgress; //per mils
 	private int downloaded; //bytes
@@ -48,5 +24,5 @@ public class Torrent {
 	private int remaining; //bytes;	
 	private String statusText;
 	private String saveDirectory;
-		
+	
 }

@@ -11,16 +11,59 @@ public class UtilityTest {
 	public void testConvertBytesToUnit() {
 		String actual;
 		
-		long bytes = 62;
+		long bytes = 500;
 		actual = Utility.convertBytesToUnit(bytes);
-		assertEquals("0.06 kB", actual);
+		assertEquals("0.50 kB", actual);
 		
-		bytes = 2545148;
+		bytes = 125487;
 		actual = Utility.convertBytesToUnit(bytes);
-		assertEquals("2.55 MB", actual);
+		assertEquals("125.49 kB", actual);
 		
-		bytes = 15645416596L;
+		bytes = 122515269;
 		actual = Utility.convertBytesToUnit(bytes);
-		assertEquals("15.65 GB", actual);		
+		assertEquals("122.52 MB", actual);
+		
+		bytes = 132652685845L;
+		actual = Utility.convertBytesToUnit(bytes);
+		assertEquals("132.65 GB", actual);	
+		
+		bytes = 85412545236365L;
+		actual = Utility.convertBytesToUnit(bytes);
+		assertEquals("85.41 TB", actual);
+		
+		bytes = 32547895412563254L;
+		actual = Utility.convertBytesToUnit(bytes);
+		assertEquals("32.55 PB", actual);
+		
+	}
+	
+	@Test
+	public void testConvertBytesToSpeedUnit() {
+		String actual;
+		
+		long bytes = 500;
+		actual = Utility.convertBytesToSpeedUnit(bytes);
+		assertEquals("0.50 kB/s", actual);
+		
+		bytes = 125487;
+		actual = Utility.convertBytesToSpeedUnit(bytes);
+		assertEquals("125.49 kB/s", actual);
+		
+		bytes = 122515269;
+		actual = Utility.convertBytesToSpeedUnit(bytes);
+		assertEquals("122.52 MB/s", actual);
+		
+		bytes = 132652685845L;
+		actual = Utility.convertBytesToSpeedUnit(bytes);
+		assertEquals("132.65 GB/s", actual);	
+		
+		bytes = 85412545236365L;
+		actual = Utility.convertBytesToSpeedUnit(bytes);
+		assertEquals("85.41 TB/s", actual);
+		
+		bytes = 32547895412563254L;
+		actual = Utility.convertBytesToSpeedUnit(bytes);
+		assertEquals("32.55 PB/s", actual);
+		
 	}
 }

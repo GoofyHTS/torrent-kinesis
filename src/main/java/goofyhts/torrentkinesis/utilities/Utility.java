@@ -20,7 +20,19 @@ public class Utility {
 			value = value.divide(divisor);
 			unit = " GB";
 		}
+		if (value.compareTo(divisor) == 1) {
+			value = value.divide(divisor);
+			unit = " TB";
+		}
+		if (value.compareTo(divisor) == 1) {
+			value = value.divide(divisor);
+			unit = " PB";
+		}
 		
 		return value.setScale(2, RoundingMode.HALF_UP) + unit;
+	}
+	
+	public static String convertBytesToSpeedUnit(long bytes) {
+		return convertBytesToUnit(bytes) + "/s";
 	}
 }
