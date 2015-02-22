@@ -25,5 +25,5 @@ public interface TorrentServerSetting<K> {
 
 	void parseSettings(Object value);
 	K getSetting(String value);
-	List<K> getAllSettings();
+	List<K> getSettings();
 }

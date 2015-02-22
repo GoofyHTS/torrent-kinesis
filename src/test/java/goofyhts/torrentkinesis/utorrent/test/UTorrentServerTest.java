@@ -41,7 +41,7 @@ public class UTorrentServerTest {
 	private static final String basePath = "src\\test\\resources\\goofyhts\\torrentkinesis\\utorrent\\test\\resources";
 	private static final String baseUrl = "http://unit.test:1234";
 	private static final String baseTokenPath = basePath + "/token.html";
-	private static final String baseTokenUrl = baseUrl + UTorrentServerConst.REQUEST_TOKEN_URL;
+	private static final String baseTokenUrl = baseUrl + UTorrentServerConst.GET_REQUEST_TOKEN_URL;
 	private static final String token = "BoNU6Qj1-5U6-BiT8Q4ThE-eGsuuvUdyurxDkzEd2z_KUmmdUoHur6Zi2lQAAAAA";
 	
 	@Test

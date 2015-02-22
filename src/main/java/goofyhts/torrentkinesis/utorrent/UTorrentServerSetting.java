@@ -19,20 +19,16 @@ SOFTWARE.
 */
 package goofyhts.torrentkinesis.utorrent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import goofyhts.torrentkinesis.torrent.TorrentServerSetting;
+import goofyhts.torrentkinesis.torrent.AbstractTorrentServerSettingCache;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
 
-public class UTorrentServerSetting implements TorrentServerSetting<UTorrentServerSettingEntry> {
-	
-	protected HashMap<String, UTorrentServerSettingEntry> settings = new HashMap<String, UTorrentServerSettingEntry>();
+public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTorrentServerSettingEntry> {
 	
 	@Override
 	public void parseSettings(Object value) {
 		Object[][] utorrentSettings = (Object[][])value;
+		
+		this.settings.clear();
 		for(Object[] arr : utorrentSettings) {
 			String optionName = (String)arr[0];
 			int optionType = (int) Math.round((Double)arr[1]);
@@ -42,15 +38,4 @@ public class UTorrentServerSetting implements TorrentServerSetting<UTorrentServe
 			this.settings.put(optionName, uTorrentServerSettingEntry);
 		}		
 	}
-
-	@Override
-	public UTorrentServerSettingEntry getSetting(String value) {
-		return this.settings.get(value);
-	}
-	
-	@Override
-	public List<UTorrentServerSettingEntry> getAllSettings() {
-		return new ArrayList<UTorrentServerSettingEntry>(settings.values());
-	}
-
 }

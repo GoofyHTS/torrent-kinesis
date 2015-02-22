@@ -19,6 +19,7 @@ SOFTWARE.
 */
 package goofyhts.torrentkinesis.utorrent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -44,30 +45,67 @@ public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSettingE
 	}
 	
 	public String getRequestToken() {
-		return HtmlParser.getElementTextById(httpClient.getURL(baseUrl + UTorrentServerConst.REQUEST_TOKEN_URL), UTorrentServerConst.REQUEST_TOKEN_ELEMENT_ID);
+		return HtmlParser.getElementTextById(httpClient.getURL(baseUrl + UTorrentServerConst.GET_REQUEST_TOKEN_URL), UTorrentServerConst.REQUEST_TOKEN_ELEMENT_ID);
 	}
 
 	@Override
-	public TorrentServerSetting<UTorrentServerSettingEntry> getSettings() {
+	public List<UTorrentServerSettingEntry> getSettings() {
 		httpClient.open();
-		String json = httpClient.getURL(String.format(baseUrl + UTorrentServerConst.GET_TORRENT_SERVER_SETTINGS_URL, getRequestToken()));
+		String url = buildRequestUrl(baseUrl, UTorrentServerConst.GET_TORRENT_SERVER_SETTINGS_BASE_URL, "", getRequestToken());
+		String json = httpClient.getURL(url);
 		httpClient.close();
 		UTorrentJsonResponse uTorrentJsonResponse = new Gson().fromJson(json, UTorrentJsonResponse.class);
 		UTorrentServerSetting uTorrentServerSetting = new UTorrentServerSetting();
 		uTorrentServerSetting.parseSettings(uTorrentJsonResponse.getSettings());
-		return uTorrentServerSetting;
+		
+		return uTorrentServerSetting.getSettings();
 	}
 
 	@Override
-	public void setSetting(TorrentServerSettingEntry setting) {
+	public void setSetting(UTorrentServerSettingEntry setting) {
 		httpClient.open();
-		String json = httpClient.getURL(String.format(baseUrl + UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_URL, setting.getSettingName(), setting.getSettingValue(), getRequestToken()));
-		System.out.println("resp=" + json);
-		httpClient.close();	
+		//String json = httpClient.getURL(String.format(baseUrl + UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_SINGLE_URL, setting.getSettingName(), setting.getSettingValue(), getRequestToken()));
+		//System.out.println("resp=" + json);
+		httpClient.close();
+		//check success!
 	}
 	
 	@Override
-	public void setSettings(List<TorrentServerSettingEntry> settings) {
-			
+	public void setSettings(List<UTorrentServerSettingEntry> settings) {
+		System.out.println("SIZE=" + settings.size());
+		httpClient.open();
+		StringBuilder request = new StringBuilder();
+		for(TorrentServerSettingEntry entry : settings) {
+			request = request.append(String.format(UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_PORTION_URL, entry.getSettingName(), entry.getSettingValue()));
+			System.out.println("appending " + String.format(UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_PORTION_URL, entry.getSettingName(), entry.getSettingValue()));
+		}
+		
+		String json = httpClient.getURL(String.format(baseUrl + request, getRequestToken()));
+		System.out.println("resp=" + json);
+		httpClient.close();
 	}	
+	
+	private String buildRequestUrl(String baseUrl, String action, String parameters, String requestToken) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(baseUrl);
+		sb.append(action);
+		sb.append(parameters);
+		sb.append(UTorrentServerConst.REQUEST_TOKEN_PORTION_URL);
+		sb.append(requestToken);
+		return sb.toString();
+	}
+
+	@Override
+	public UTorrentServerSettingEntry getSetting(String name) {
+		httpClient.open();
+		String url = buildRequestUrl(baseUrl, UTorrentServerConst.GET_TORRENT_SERVER_SETTINGS_BASE_URL, "", getRequestToken());
+		String json = httpClient.getURL(url);
+		httpClient.close();
+		UTorrentJsonResponse uTorrentJsonResponse = new Gson().fromJson(json, UTorrentJsonResponse.class);
+		UTorrentServerSetting uTorrentServerSetting = new UTorrentServerSetting();
+		uTorrentServerSetting.parseSettings(uTorrentJsonResponse.getSettings());
+		
+		return uTorrentServerSetting.getSetting(name);
+	}
+
 }
