@@ -40,11 +40,15 @@ public class GeneralTest {
 		}*/
 		
 		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui", new DefaultHttpClient("root", "Whcinhry21#"));
-		UTorrentServerSettingEntry entry1 = uTorrentServer.getSetting("max_dl_rate");
-		UTorrentServerSettingEntry entry2 = uTorrentServer.getSetting("max_ul_rate");
+		
+		uTorrentServer.getTorrentServerSetting();
+		
+		
+		//UTorrentServerSettingEntry entry1 = uTorrentServer.getSetting("max_dl_rate");
+		//UTorrentServerSettingEntry entry2 = uTorrentServer.getSetting("max_ul_rate");
 				
-		System.out.println(entry1.getSettingValue());
-		System.out.println(entry2.getSettingValue());
+		//System.out.println(entry1.getSettingValue());
+		//System.out.println(entry2.getSettingValue());
 		
 		//System.out.println(uTorrentServer.getSettings().getSetting("max_dl_rate").getSettingValue());
 		

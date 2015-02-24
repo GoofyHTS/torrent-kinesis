@@ -19,12 +19,8 @@ SOFTWARE.
 */
 package goofyhts.torrentkinesis.torrent;
 
-import java.util.List;
 
-public interface TorrentServer<SettingEntry extends TorrentServerSettingEntry> {
+public interface TorrentServer<ServerSetting extends TorrentServerSetting<ServerSettingEntry>, ServerSettingEntry extends TorrentServerSettingEntry> {
 
-	SettingEntry getSetting(String name);
-	List<SettingEntry> getSettings();
-	void setSetting(SettingEntry torrentServerSettingEntry);
-	void setSettings(List<SettingEntry> settings);
+	ServerSetting getTorrentServerSetting();
 }

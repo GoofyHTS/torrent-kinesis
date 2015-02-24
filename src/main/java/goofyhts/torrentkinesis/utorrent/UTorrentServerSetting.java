@@ -19,14 +19,28 @@ SOFTWARE.
 */
 package goofyhts.torrentkinesis.utorrent;
 
+import java.util.List;
+
+import goofyhts.torrentkinesis.TorrentHttpClient;
 import goofyhts.torrentkinesis.torrent.AbstractTorrentServerSettingCache;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
 
 public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTorrentServerSettingEntry> {
 	
+	public UTorrentServerSetting(TorrentHttpClient httpClient) {
+		super(httpClient);
+	}
+
 	@Override
-	public void parseSettings(Object value) {
-		Object[][] utorrentSettings = (Object[][])value;
+	public void refreshSettings() {
+		this.httpClient.open();
+		//String url = buildRequestUrl(baseUrl, UTorrentServerConst.GET_TORRENT_SERVER_SETTINGS_BASE_URL, "", getRequestToken());
+		//String json = httpClient.getURL(url);
+		this.httpClient.close();
+		//UTorrentJsonResponse uTorrentJsonResponse = new Gson().fromJson(json, UTorrentJsonResponse.class);
+		
+		
+		Object[][] utorrentSettings = null;//(Object[][])value;
 		
 		this.settings.clear();
 		for(Object[] arr : utorrentSettings) {
@@ -37,5 +51,17 @@ public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTo
 			
 			this.settings.put(optionName, uTorrentServerSettingEntry);
 		}		
+	}
+
+	@Override
+	public void setSetting(UTorrentServerSettingEntry serverSetting) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSettings(List<UTorrentServerSettingEntry> serverSetting) {
+		// TODO Auto-generated method stub
+		
 	}
 }

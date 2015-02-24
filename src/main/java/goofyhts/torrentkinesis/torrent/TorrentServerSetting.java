@@ -21,9 +21,10 @@ package goofyhts.torrentkinesis.torrent;
 
 import java.util.List;
 
-public interface TorrentServerSetting<K> {
+public interface TorrentServerSetting<ServerSetting> {
 
-	void parseSettings(Object value);
-	K getSetting(String value);
-	List<K> getSettings();
+	ServerSetting getSetting(String value);
+	List<ServerSetting> getSettings();
+	void setSetting(ServerSetting serverSetting);
+	void setSettings(List<ServerSetting> serverSetting);
 }

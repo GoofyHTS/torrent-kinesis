@@ -34,7 +34,7 @@ import goofyhts.torrentkinesis.utorrent.constant.UTorrentServerConst;
 import goofyhts.torrentkinesis.utorrent.json.response.UTorrentJsonResponse;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
 
-public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSettingEntry> {
+public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSetting,UTorrentServerSettingEntry> {
 	
 	public UTorrentServer(String baseUrl, TorrentHttpClient httpClient) {
 		super(baseUrl, httpClient);
@@ -49,6 +49,13 @@ public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSettingE
 	}
 
 	@Override
+	public UTorrentServerSetting getTorrentServerSetting() {
+		UTorrentServerSetting uTorrentServerSetting = new UTorrentServerSetting(httpClient);
+		//uTorrentServerSetting.
+		return null;
+	}
+
+	/*@Override
 	public List<UTorrentServerSettingEntry> getSettings() {
 		httpClient.open();
 		String url = buildRequestUrl(baseUrl, UTorrentServerConst.GET_TORRENT_SERVER_SETTINGS_BASE_URL, "", getRequestToken());
@@ -107,5 +114,6 @@ public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSettingE
 		
 		return uTorrentServerSetting.getSetting(name);
 	}
+	*/
 
 }
