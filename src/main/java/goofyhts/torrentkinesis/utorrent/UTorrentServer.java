@@ -38,12 +38,16 @@ import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntr
 
 public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSetting,UTorrentServerSettingEntry> {
 	
+	public UTorrentServer(String baseAddress, String username, String password) {
+		super(new UTorrentServerRequest(baseAddress, new DefaultHttpClient(username, password), new GsonTorrentParser()));
+	}
+	
 	public UTorrentServer(String baseAddress, TorrentHttpClient httpClient) {
 		super(new UTorrentServerRequest(baseAddress, httpClient, new GsonTorrentParser()));		
 	}
 	
-	public UTorrentServer(String baseAddress) {
-		super(new UTorrentServerRequest(baseAddress, new DefaultHttpClient("root","Whcinhry21#"), new GsonTorrentParser()));
+	public UTorrentServer(String baseAddress, TorrentHttpClient httpClient, TorrentJsonParser jsonParser) {
+		super(new UTorrentServerRequest(baseAddress, httpClient, jsonParser));		
 	}
 
 	@Override

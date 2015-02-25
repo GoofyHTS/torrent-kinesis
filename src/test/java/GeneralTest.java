@@ -40,7 +40,7 @@ public class GeneralTest {
 			System.out.println(e.getSettingName()+"="+e.getSettingValue() + " TYPE=" + e.getSettingType());
 		}*/
 		
-		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui");
+		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui","","");
 		
 		UTorrentServerSetting ts = uTorrentServer.getTorrentServerSetting();
 		
