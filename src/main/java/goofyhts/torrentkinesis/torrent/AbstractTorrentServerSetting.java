@@ -1,12 +1,10 @@
 package goofyhts.torrentkinesis.torrent;
 
-import goofyhts.torrentkinesis.TorrentHttpClient;
-
 public abstract class AbstractTorrentServerSetting<SettingEntry extends TorrentServerSettingEntry> implements TorrentServerSetting<SettingEntry> {
 
-	protected TorrentHttpClient httpClient;
+	protected TorrentServerRequest torrentServerRequest;
 	
-	public AbstractTorrentServerSetting(TorrentHttpClient httpClient) {
-		this.httpClient = httpClient;
+	public AbstractTorrentServerSetting(TorrentServerRequest torrentServerRequest) {
+		this.torrentServerRequest = torrentServerRequest;
 	}
 }

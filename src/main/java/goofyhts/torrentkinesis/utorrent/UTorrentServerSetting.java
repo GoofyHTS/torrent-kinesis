@@ -21,26 +21,29 @@ package goofyhts.torrentkinesis.utorrent;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import goofyhts.torrentkinesis.TorrentHttpClient;
 import goofyhts.torrentkinesis.torrent.AbstractTorrentServerSettingCache;
+import goofyhts.torrentkinesis.torrent.TorrentServerRequest;
+import goofyhts.torrentkinesis.utorrent.constant.UTorrentServerConst;
+import goofyhts.torrentkinesis.utorrent.json.response.UTorrentJsonResponse;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
 
 public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTorrentServerSettingEntry> {
 	
-	public UTorrentServerSetting(TorrentHttpClient httpClient) {
-		super(httpClient);
+	public UTorrentServerSetting(TorrentServerRequest torrentServerRequest) {
+		super(torrentServerRequest);
+		refreshSettings();
 	}
 
 	@Override
 	public void refreshSettings() {
-		this.httpClient.open();
-		//String url = buildRequestUrl(baseUrl, UTorrentServerConst.GET_TORRENT_SERVER_SETTINGS_BASE_URL, "", getRequestToken());
-		//String json = httpClient.getURL(url);
-		this.httpClient.close();
-		//UTorrentJsonResponse uTorrentJsonResponse = new Gson().fromJson(json, UTorrentJsonResponse.class);
-		
-		
-		Object[][] utorrentSettings = null;//(Object[][])value;
+		String json = this.torrentServerRequest.getRequest(UTorrentServerConst.GET_TORRENT_SERVER_SETTINGS_URL);
+		UTorrentJsonResponse uTorrentJsonResponse = this.torrentServerRequest.getJsonParser().jsonToObject(json, UTorrentJsonResponse.class);
+		System.out.println(uTorrentJsonResponse.getBuild());
+				
+		Object[][] utorrentSettings = uTorrentJsonResponse.getSettings();
 		
 		this.settings.clear();
 		for(Object[] arr : utorrentSettings) {

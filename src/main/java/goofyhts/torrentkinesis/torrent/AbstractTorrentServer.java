@@ -19,32 +19,11 @@ SOFTWARE.
 */
 package goofyhts.torrentkinesis.torrent;
 
-import goofyhts.torrentkinesis.TorrentHttpClient;
-
 public abstract class AbstractTorrentServer<ServerSetting extends TorrentServerSetting<ServerSettingEntry>, ServerSettingEntry extends TorrentServerSettingEntry> implements TorrentServer<ServerSetting,ServerSettingEntry> {
 
-	protected String baseUrl;
-	protected TorrentHttpClient httpClient;
+	protected TorrentServerRequest torrentServerRequest;
 	
-	public AbstractTorrentServer(String baseAddress, TorrentHttpClient httpClient) {
-		this.baseUrl = baseAddress;
-		this.httpClient = httpClient;
-	}
-	
-	public String getBaseAddress() {
-		return baseUrl;
-	}
-
-	public void setBaseAddress(String baseAddress) {
-		this.baseUrl = baseAddress;
-	}
-
-	public TorrentHttpClient getHttpClient() {
-		return httpClient;
-	}
-
-	public void setHttpClient(TorrentHttpClient httpClient) {
-		this.httpClient = httpClient;
+	public AbstractTorrentServer(TorrentServerRequest torrentServerRequest) {
+		this.torrentServerRequest = torrentServerRequest;
 	}	
-	
 }

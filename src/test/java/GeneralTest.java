@@ -26,6 +26,7 @@ import goofyhts.torrentkinesis.http.DefaultHttpClient;
 import goofyhts.torrentkinesis.torrent.TorrentServer;
 import goofyhts.torrentkinesis.torrent.TorrentServerSettingEntry;
 import goofyhts.torrentkinesis.utorrent.UTorrentServer;
+import goofyhts.torrentkinesis.utorrent.UTorrentServerSetting;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
 
 
@@ -39,9 +40,17 @@ public class GeneralTest {
 			System.out.println(e.getSettingName()+"="+e.getSettingValue() + " TYPE=" + e.getSettingType());
 		}*/
 		
-		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui", new DefaultHttpClient("root", "Whcinhry21#"));
+		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui");
 		
-		uTorrentServer.getTorrentServerSetting();
+		UTorrentServerSetting ts = uTorrentServer.getTorrentServerSetting();
+		
+		for(UTorrentServerSettingEntry e : ts.getSettings())
+		{
+			System.out.println(e.getSettingName() + "=" + e.getSettingValue());
+		}
+		
+		System.out.println("MAXDL=" + ts.getSetting("max_ul_rate").getSettingValue());
+		System.out.println("MAXDL=" + ts.getSetting("max_dl_rate").getSettingValue());
 		
 		
 		//UTorrentServerSettingEntry entry1 = uTorrentServer.getSetting("max_dl_rate");

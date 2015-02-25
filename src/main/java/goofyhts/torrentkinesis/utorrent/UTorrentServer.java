@@ -27,6 +27,8 @@ import com.google.gson.Gson;
 import goofyhts.torrentkinesis.TorrentHttpClient;
 import goofyhts.torrentkinesis.html.parser.HtmlParser;
 import goofyhts.torrentkinesis.http.DefaultHttpClient;
+import goofyhts.torrentkinesis.json.parser.TorrentJsonParser;
+import goofyhts.torrentkinesis.json.parser.gson.GsonTorrentParser;
 import goofyhts.torrentkinesis.torrent.AbstractTorrentServer;
 import goofyhts.torrentkinesis.torrent.TorrentServerSetting;
 import goofyhts.torrentkinesis.torrent.TorrentServerSettingEntry;
@@ -36,23 +38,17 @@ import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntr
 
 public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSetting,UTorrentServerSettingEntry> {
 	
-	public UTorrentServer(String baseUrl, TorrentHttpClient httpClient) {
-		super(baseUrl, httpClient);
+	public UTorrentServer(String baseAddress, TorrentHttpClient httpClient) {
+		super(new UTorrentServerRequest(baseAddress, httpClient, new GsonTorrentParser()));		
 	}
 	
-	public UTorrentServer(String baseUrl) {
-		super(baseUrl, new DefaultHttpClient("root","Whcinhry21#"));		
-	}
-	
-	public String getRequestToken() {
-		return HtmlParser.getElementTextById(httpClient.getURL(baseUrl + UTorrentServerConst.GET_REQUEST_TOKEN_URL), UTorrentServerConst.REQUEST_TOKEN_ELEMENT_ID);
+	public UTorrentServer(String baseAddress) {
+		super(new UTorrentServerRequest(baseAddress, new DefaultHttpClient("root","Whcinhry21#"), new GsonTorrentParser()));
 	}
 
 	@Override
 	public UTorrentServerSetting getTorrentServerSetting() {
-		UTorrentServerSetting uTorrentServerSetting = new UTorrentServerSetting(httpClient);
-		//uTorrentServerSetting.
-		return null;
+		return new UTorrentServerSetting(torrentServerRequest);
 	}
 
 	/*@Override

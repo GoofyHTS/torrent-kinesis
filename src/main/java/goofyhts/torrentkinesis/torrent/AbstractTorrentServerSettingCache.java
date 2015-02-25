@@ -10,8 +10,8 @@ public abstract class AbstractTorrentServerSettingCache<SettingEntry extends Tor
 
 	protected HashMap<String, SettingEntry> settings = new HashMap<String, SettingEntry>();
 
-	public AbstractTorrentServerSettingCache(TorrentHttpClient httpClient) {
-		super(httpClient);	
+	public AbstractTorrentServerSettingCache(TorrentServerRequest torrentServerRequest) {
+		super(torrentServerRequest);	
 	}
 
 	public abstract void refreshSettings();
