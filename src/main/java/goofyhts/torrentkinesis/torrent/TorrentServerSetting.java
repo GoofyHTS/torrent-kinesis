@@ -26,5 +26,5 @@ public interface TorrentServerSetting<ServerSetting> {
 	ServerSetting getSetting(String value);
 	List<ServerSetting> getSettings();
 	void setSetting(ServerSetting serverSetting);
-	void setSettings(List<ServerSetting> serverSetting);
+	void setSettings(List<ServerSetting> serverSettings);
 }
