@@ -22,11 +22,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import goofyhts.torrentkinesis.http.DefaultHttpClient;
-import goofyhts.torrentkinesis.torrent.TorrentServer;
-import goofyhts.torrentkinesis.torrent.TorrentServerSettingEntry;
-import goofyhts.torrentkinesis.utorrent.UTorrentServer;
-import goofyhts.torrentkinesis.utorrent.UTorrentServerSetting;
+import goofyhts.torrentkinesis.http.client.DefaultHttpClient;
+import goofyhts.torrentkinesis.torrent.server.TorrentServer;
+import goofyhts.torrentkinesis.torrent.server.setting.TorrentServerSettingEntry;
+import goofyhts.torrentkinesis.utorrent.server.UTorrentServer;
+import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSetting;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
 
 

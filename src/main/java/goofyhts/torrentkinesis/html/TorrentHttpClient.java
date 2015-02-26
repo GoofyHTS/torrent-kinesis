@@ -17,18 +17,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package goofyhts.torrentkinesis.utorrent.constant;
+package goofyhts.torrentkinesis.html;
 
-public class UTorrentServerConst { 
-	
-	private UTorrentServerConst() {		
-	}
+public interface TorrentHttpClient {
 
-	public static final String GET_REQUEST_TOKEN_URL = "/token.html";
-	public static final String REQUEST_TOKEN_ELEMENT_ID = "token";
-	public static final String REQUEST_TOKEN_PORTION_URL = "&token=";
-	public static final String GET_TORRENT_SERVER_SETTINGS_URL = "/?action=getsettings";
-	public static final String SET_TORRENT_SERVER_SETTINGS_BASE_URL = "/?action=setsetting";
-	public static final String SET_TORRENT_SERVER_SETTINGS_PORTION_URL = "&s=%s&v=%s";
-	public static final String GET_TORRENT_LIST_URL = "/?list=1";
+	public void open();
+	public String getURL(String url);
+	public String postURL(String url);
+	public void close();
 }

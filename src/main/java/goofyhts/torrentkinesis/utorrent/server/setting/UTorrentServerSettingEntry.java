@@ -20,7 +20,7 @@ SOFTWARE.
 package goofyhts.torrentkinesis.utorrent.server.setting;
 
 import goofyhts.torrentkinesis.exception.InvalidTorrentServerSettingException;
-import goofyhts.torrentkinesis.torrent.TorrentServerSettingEntry;
+import goofyhts.torrentkinesis.torrent.server.setting.TorrentServerSettingEntry;
 
 public class UTorrentServerSettingEntry implements TorrentServerSettingEntry {
 	
@@ -55,7 +55,7 @@ public class UTorrentServerSettingEntry implements TorrentServerSettingEntry {
 	
 	private void validateOptionValue(String value) {
 		if (this.settingName.equals("offers.404_icon"))
-			return; //skip validation, UTorrent bug. Data type is 0 (Integer) but contains a String
+			return; //skip validation for this setting, UTorrent bug. Data type is 0 (Integer) but contains a String
 		try {
 			if (settingType == SETTING_TYPE.INTEGER) {
 				Integer.parseInt(value);

@@ -23,11 +23,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import goofyhts.torrentkinesis.TorrentHttpClient;
 import goofyhts.torrentkinesis.exception.NotImplementedException;
+import goofyhts.torrentkinesis.html.TorrentHttpClient;
 import goofyhts.torrentkinesis.torrent.AbstractTorrent;
-import goofyhts.torrentkinesis.utorrent.UTorrentServer;
 import goofyhts.torrentkinesis.utorrent.constant.UTorrentServerConst;
+import goofyhts.torrentkinesis.utorrent.server.UTorrentServer;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
