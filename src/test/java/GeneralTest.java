@@ -34,7 +34,7 @@ public class GeneralTest {
 
 	@Test
 	public void test() {
-		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui","root","Whcinhry21#");	
+		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui","","");	
 		uTorrentServer.getTorrentServerSetting().getSetting("max_dl_rate").setValue("999").save();
 	}
 }
