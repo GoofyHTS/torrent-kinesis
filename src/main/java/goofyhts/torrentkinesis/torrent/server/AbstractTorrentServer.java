@@ -21,12 +21,26 @@ package goofyhts.torrentkinesis.torrent.server;
 
 import goofyhts.torrentkinesis.torrent.server.request.TorrentServerRequest;
 import goofyhts.torrentkinesis.torrent.server.setting.TorrentServerSetting;
-import goofyhts.torrentkinesis.torrent.server.setting.TorrentServerSettingEntry;
+import goofyhts.torrentkinesis.torrent.server.setting.entry.TorrentServerSettingEntry;
 
+/**
+ * Provides basic functionality for a torrent server
+ * @author GoofyHTS
+ *
+ * @param <ServerSetting>
+ * @param <ServerSettingEntry>
+ */
 public abstract class AbstractTorrentServer<ServerSetting extends TorrentServerSetting<ServerSettingEntry>, ServerSettingEntry extends TorrentServerSettingEntry> implements TorrentServer<ServerSetting,ServerSettingEntry> {
 
+	/**
+	 * Torrent server request
+	 */
 	protected TorrentServerRequest torrentServerRequest;
 	
+	/**
+	 * Constructor
+	 * @param torrentServerRequest Torrent server request
+	 */
 	public AbstractTorrentServer(TorrentServerRequest torrentServerRequest) {
 		this.torrentServerRequest = torrentServerRequest;
 	}	

@@ -21,10 +21,24 @@ package goofyhts.torrentkinesis.torrent.server.setting;
 
 import java.util.List;
 
+/**
+ * Defines a torrent server setting for managing torrent settings
+ * @author GoofyHTS
+ *
+ * @param <ServerSetting>
+ */
 public interface TorrentServerSetting<ServerSetting> {
 
+	/**
+	 * Gets a setting from the server
+	 * @param value Name of the setting
+	 * @return Value of the setting
+	 */
 	ServerSetting getSetting(String value);
+	
+	/**
+	 * Gets all settings from server
+	 * @return All settings from the server
+	 */
 	List<ServerSetting> getSettings();
-	void setSetting(ServerSetting serverSetting);
-	void setSettings(List<ServerSetting> serverSettings);
 }

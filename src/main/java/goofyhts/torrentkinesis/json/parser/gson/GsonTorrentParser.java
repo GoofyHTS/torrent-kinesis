@@ -5,6 +5,11 @@ import com.google.gson.Gson;
 import goofyhts.torrentkinesis.exception.FailureParsingJsonException;
 import goofyhts.torrentkinesis.json.parser.TorrentJsonParser;
 
+/**
+ * Gson implementation of the Json Parser
+ * @author GoofyHTS
+ *
+ */
 public class GsonTorrentParser implements TorrentJsonParser {
 
 	@Override

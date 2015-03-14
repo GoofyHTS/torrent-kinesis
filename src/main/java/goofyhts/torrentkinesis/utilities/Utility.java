@@ -22,8 +22,18 @@ package goofyhts.torrentkinesis.utilities;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Contains utilities
+ * @author GoofyHTS
+ *
+ */
 public class Utility {
 
+	/**
+	 * Converts bytes to a representable unit, such as MB,GB,TB etc.
+	 * @param bytes
+	 * @return
+	 */
 	public static String convertBytesToUnit(long bytes) {
 		String unit = " kB";
 		BigDecimal divisor = new BigDecimal(1000);
@@ -51,6 +61,11 @@ public class Utility {
 		return value.setScale(2, RoundingMode.HALF_UP) + unit;
 	}
 	
+	/**
+	 * Converts bytes per second to a representable unit, such as MB/s,GB/s etc.
+	 * @param bytes
+	 * @return
+	 */
 	public static String convertBytesToSpeedUnit(long bytes) {
 		return convertBytesToUnit(bytes) + "/s";
 	}

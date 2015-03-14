@@ -17,11 +17,37 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package goofyhts.torrentkinesis.torrent.server.setting;
+package goofyhts.torrentkinesis.torrent.server.setting.entry;
 
+/**
+ * Defines a server setting entry
+ * @author GoofyHTS
+ *
+ */
 public interface TorrentServerSettingEntry {
 
-	String getSettingName();
-	String getSettingValue();
-	void setSettingValue(String value);
+	/**
+	 * Gets the name of the setting
+	 * @return Name of the setting
+	 */
+	String getName();
+	
+	/**
+	 * Gets the value of the setting
+	 * @return Value of the setting
+	 */
+	String getValue();
+	
+	/**
+	 * Sets the value of the setting
+	 * @param value The new value of the setting
+	 */
+	void setValue(String value);
+	
+	/**
+	 * Saves the setting to the server.
+	 * <p>
+	 * This results in a single request being sent to the server
+	 */
+	void save();
 }

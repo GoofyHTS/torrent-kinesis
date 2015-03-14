@@ -19,10 +19,19 @@ SOFTWARE.
 */
 package goofyhts.torrentkinesis.exception;
 
+/**
+ * Custom exception indicating a invalid value was set to a setting, such as setting a String to a Integer type setting
+ * @author GoofyHTS
+ *
+ */
 public class InvalidTorrentServerSettingException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Constructor
+	 * @param message Error message to be displayed
+	 */
 	public InvalidTorrentServerSettingException(String message) {
 		super(message);
 	}

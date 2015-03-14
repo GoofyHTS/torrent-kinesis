@@ -21,7 +21,7 @@ package goofyhts.torrentkinesis.html.parser;
 
 import org.jsoup.Jsoup;
 
-public final class HtmlParser {
+public class HtmlParser {
 
 	private HtmlParser() {		
 	}

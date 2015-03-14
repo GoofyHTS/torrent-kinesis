@@ -20,8 +20,8 @@ SOFTWARE.
 package goofyhts.torrentkinesis.test.utorrent.server.setting;
 
 import goofyhts.torrentkinesis.exception.InvalidTorrentServerSettingException;
-import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
-import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry.SETTING_TYPE;
+import goofyhts.torrentkinesis.utorrent.server.setting.entry.UTorrentServerSettingEntry;
+import goofyhts.torrentkinesis.utorrent.server.setting.entry.UTorrentServerSettingEntry.SETTING_TYPE;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -43,18 +43,18 @@ public class UTorrrentServerSettingEntryTest {
 	@Test
 	public void testValidSettingDataType() {
 		UTorrentServerSettingEntry classUnderTest = new UTorrentServerSettingEntry("option1", 0, "0");
-		classUnderTest.setSettingValue("6");
-		assertEquals("6", classUnderTest.getSettingValue());
+		classUnderTest.setValue("6");
+		assertEquals("6", classUnderTest.getValue());
 		
 		classUnderTest = new UTorrentServerSettingEntry("option1", 1, "false");
-		classUnderTest.setSettingValue("true");
-		assertEquals("true", classUnderTest.getSettingValue());
-		classUnderTest.setSettingValue("false");
-		assertEquals("false", classUnderTest.getSettingValue());
+		classUnderTest.setValue("true");
+		assertEquals("true", classUnderTest.getValue());
+		classUnderTest.setValue("false");
+		assertEquals("false", classUnderTest.getValue());
 		
 		classUnderTest = new UTorrentServerSettingEntry("option1", 2, "string");
-		classUnderTest.setSettingValue("otherstring");
-		assertEquals("otherstring", classUnderTest.getSettingValue());
+		classUnderTest.setValue("otherstring");
+		assertEquals("otherstring", classUnderTest.getValue());
 	}
 	
 	@Test(expected = InvalidTorrentServerSettingException.class)
@@ -70,13 +70,13 @@ public class UTorrrentServerSettingEntryTest {
 	@Test(expected = InvalidTorrentServerSettingException.class)
 	public void testInvalidIntegerSetSettingDataType() {
 		UTorrentServerSettingEntry classUnderTest = new UTorrentServerSettingEntry("option1", 0, "0");
-		classUnderTest.setSettingValue("abc");
+		classUnderTest.setValue("abc");
 	}
 	
 	@Test(expected = InvalidTorrentServerSettingException.class)
 	public void testInvalidBooleanSetSettingDataType() {
 		UTorrentServerSettingEntry classUnderTest = new UTorrentServerSettingEntry("option1", 1, "false");
-		classUnderTest.setSettingValue("abc");
+		classUnderTest.setValue("abc");
 	}
 	
 	@Test

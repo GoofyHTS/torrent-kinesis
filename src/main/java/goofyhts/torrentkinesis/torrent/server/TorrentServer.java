@@ -20,16 +20,20 @@ SOFTWARE.
 package goofyhts.torrentkinesis.torrent.server;
 
 import goofyhts.torrentkinesis.torrent.server.setting.TorrentServerSetting;
-import goofyhts.torrentkinesis.torrent.server.setting.TorrentServerSettingEntry;
+import goofyhts.torrentkinesis.torrent.server.setting.entry.TorrentServerSettingEntry;
 
 /**
  * Defines a torrent server and all operations related to the server
  * @author GoofyHTS
  *
- * @param <ServerSetting> 
- * @param <ServerSettingEntry>
+ * @param <ServerSetting> Generic type of a torrent server setting
+ * @param <ServerSettingEntry> Generic type of a torrent server setting entry
  */
 public interface TorrentServer<ServerSetting extends TorrentServerSetting<ServerSettingEntry>, ServerSettingEntry extends TorrentServerSettingEntry> {
 
+	/**
+	 * Gets a torrent server setting
+	 * @return Torrent server setting
+	 */
 	ServerSetting getTorrentServerSetting();
 }

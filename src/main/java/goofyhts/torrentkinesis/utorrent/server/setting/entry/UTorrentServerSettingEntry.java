@@ -17,10 +17,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package goofyhts.torrentkinesis.utorrent.server.setting;
+package goofyhts.torrentkinesis.utorrent.server.setting.entry;
 
 import goofyhts.torrentkinesis.exception.InvalidTorrentServerSettingException;
-import goofyhts.torrentkinesis.torrent.server.setting.TorrentServerSettingEntry;
+import goofyhts.torrentkinesis.torrent.server.setting.entry.TorrentServerSettingEntry;
 
 public class UTorrentServerSettingEntry implements TorrentServerSettingEntry {
 	
@@ -72,22 +72,25 @@ public class UTorrentServerSettingEntry implements TorrentServerSettingEntry {
 	}
 
 	@Override
-	public String getSettingName() {
+	public String getName() {
 		return this.settingName;
 	}
 	
 	@Override
-	public String getSettingValue() {
+	public String getValue() {
 		return this.settingValue;
 	}
 
 	@Override
-	public void setSettingValue(String value) {
+	public void setValue(String value) {
 		validateOptionValue(value);
 		this.settingValue = value;
 	}
 	
 	public SETTING_TYPE getSettingType() {
 		return this.settingType;
+	}
+	
+	public void save() {		
 	}
 }

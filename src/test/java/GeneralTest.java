@@ -24,17 +24,17 @@ import org.junit.Test;
 
 import goofyhts.torrentkinesis.http.client.DefaultHttpClient;
 import goofyhts.torrentkinesis.torrent.server.TorrentServer;
-import goofyhts.torrentkinesis.torrent.server.setting.TorrentServerSettingEntry;
+import goofyhts.torrentkinesis.torrent.server.setting.entry.TorrentServerSettingEntry;
 import goofyhts.torrentkinesis.utorrent.server.UTorrentServer;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSetting;
-import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
+import goofyhts.torrentkinesis.utorrent.server.setting.entry.UTorrentServerSettingEntry;
 
 
 public class GeneralTest {
 
-	@Test
+	//@Test
 	public void test() {
-	 /*   UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui", new DefaultHttpClient("root", "Whcinhry21#"));
+	 /*   UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui", new DefaultHttpClient("root", ""));
 		List<UTorrentServerSettingEntry> entries = uTorrentServer.getSettings();
 		for(UTorrentServerSettingEntry e : entries) {
 			System.out.println(e.getSettingName()+"="+e.getSettingValue() + " TYPE=" + e.getSettingType());
@@ -53,16 +53,16 @@ public class GeneralTest {
 		//System.out.println("MAXDL=" + ts.getSetting("max_dl_rate").getSettingValue());
 		
 		UTorrentServerSettingEntry se = ts.getSetting("max_dl_rate");
-		se.setSettingValue("750");
+		se.setValue("750");
 		
 		UTorrentServerSettingEntry se2 = ts.getSetting("max_ul_rate");
-		se2.setSettingValue("850");
+		se2.setValue("850");
 		
 		List<UTorrentServerSettingEntry> ses = new ArrayList<UTorrentServerSettingEntry>();
 		ses.add(se);
 		ses.add(se2);
 
-		ts.setSettings(ses);
+		//ts.setSettings(ses);
 		
 		
 		//UTorrentServerSettingEntry entry1 = uTorrentServer.getSetting("max_dl_rate");

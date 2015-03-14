@@ -26,6 +26,7 @@ import goofyhts.torrentkinesis.torrent.server.request.TorrentServerRequest;
 import goofyhts.torrentkinesis.torrent.server.setting.cache.AbstractTorrentServerSettingCache;
 import goofyhts.torrentkinesis.utorrent.constant.UTorrentServerConst;
 import goofyhts.torrentkinesis.utorrent.json.response.UTorrentJsonResponse;
+import goofyhts.torrentkinesis.utorrent.server.setting.entry.UTorrentServerSettingEntry;
 
 public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTorrentServerSettingEntry> {
 	
@@ -53,7 +54,7 @@ public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTo
 		}		
 	}
 
-	@Override
+	/*@Override
 	public void setSetting(UTorrentServerSettingEntry serverSetting) {
 		String url = buildSetSettingsUrl(Arrays.asList(new UTorrentServerSettingEntry[]{serverSetting}));
 		String json = this.torrentServerRequest.getRequest(url);
@@ -69,12 +70,12 @@ public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTo
 		
 		UTorrentJsonResponse uTorrentJsonResponse = this.torrentServerRequest.getJsonParser().jsonToObject(json, UTorrentJsonResponse.class);
 		System.out.println(uTorrentJsonResponse.getBuild());
-	}
+	}*/
 	
 	private String buildSetSettingsUrl(List<UTorrentServerSettingEntry> serverSettings) {
 		StringBuilder url = new StringBuilder(UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_BASE_URL);
 		for(UTorrentServerSettingEntry uTorrentServerSettingEntry : serverSettings) {
-			url.append(String.format(UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_PORTION_URL, uTorrentServerSettingEntry.getSettingName(), uTorrentServerSettingEntry.getSettingValue()));
+			url.append(String.format(UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_PORTION_URL, uTorrentServerSettingEntry.getName(), uTorrentServerSettingEntry.getValue()));
 		}
 		return url.toString();
 	}

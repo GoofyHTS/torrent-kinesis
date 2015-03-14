@@ -26,7 +26,7 @@ import goofyhts.torrentkinesis.json.parser.gson.GsonTorrentParser;
 import goofyhts.torrentkinesis.torrent.server.AbstractTorrentServer;
 import goofyhts.torrentkinesis.utorrent.server.request.UTorrentServerRequest;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSetting;
-import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSettingEntry;
+import goofyhts.torrentkinesis.utorrent.server.setting.entry.UTorrentServerSettingEntry;
 
 public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSetting,UTorrentServerSettingEntry> {
 	
