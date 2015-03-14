@@ -19,10 +19,34 @@ SOFTWARE.
 */
 package goofyhts.torrentkinesis.html;
 
+/**
+ * Defines operation for a http client
+ * @author GoofyHTS
+ *
+ */
 public interface TorrentHttpClient {
 
+	/**
+	 * Open the http connection
+	 */
 	public void open();
+	
+	/**
+	 * Sends a GET request
+	 * @param url URL for the GET request
+	 * @return
+	 */
 	public String getURL(String url);
+	
+	/**
+	 * Sends a POST request
+	 * @param url URL for the POST request
+	 * @return
+	 */
 	public String postURL(String url);
+	
+	/**
+	 * Closes the http connection
+	 */
 	public void close();
 }

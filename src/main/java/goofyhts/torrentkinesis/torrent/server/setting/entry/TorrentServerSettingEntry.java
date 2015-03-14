@@ -42,7 +42,7 @@ public interface TorrentServerSettingEntry {
 	 * Sets the value of the setting
 	 * @param value The new value of the setting
 	 */
-	void setValue(String value);
+	TorrentServerSettingEntry setValue(String value);
 	
 	/**
 	 * Saves the setting to the server.

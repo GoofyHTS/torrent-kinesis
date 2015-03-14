@@ -30,6 +30,10 @@ import goofyhts.torrentkinesis.utorrent.server.setting.entry.UTorrentServerSetti
 
 public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTorrentServerSettingEntry> {
 	
+	/**
+	 * Constructor, results in single request to the server
+	 * @param torrentServerRequest Torrent server request
+	 */
 	public UTorrentServerSetting(TorrentServerRequest torrentServerRequest) {
 		super(torrentServerRequest);
 		refreshSettings();
@@ -48,7 +52,7 @@ public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTo
 			String optionName = (String)arr[0];
 			int optionType = (int) Math.round((Double)arr[1]);
 			String optionValue = (String)arr[2];
-			UTorrentServerSettingEntry uTorrentServerSettingEntry = new UTorrentServerSettingEntry(optionName, optionType, optionValue);
+			UTorrentServerSettingEntry uTorrentServerSettingEntry = new UTorrentServerSettingEntry(this.torrentServerRequest, optionName, optionType, optionValue);
 			
 			this.settings.put(optionName, uTorrentServerSettingEntry);
 		}		
@@ -72,6 +76,11 @@ public class UTorrentServerSetting extends AbstractTorrentServerSettingCache<UTo
 		System.out.println(uTorrentJsonResponse.getBuild());
 	}*/
 	
+	/**
+	 * Builds the set settings url string
+	 * @param serverSettings List of server settings
+	 * @return URL to be used for request
+	 */
 	private String buildSetSettingsUrl(List<UTorrentServerSettingEntry> serverSettings) {
 		StringBuilder url = new StringBuilder(UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_BASE_URL);
 		for(UTorrentServerSettingEntry uTorrentServerSettingEntry : serverSettings) {

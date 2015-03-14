@@ -28,16 +28,38 @@ import goofyhts.torrentkinesis.utorrent.server.request.UTorrentServerRequest;
 import goofyhts.torrentkinesis.utorrent.server.setting.UTorrentServerSetting;
 import goofyhts.torrentkinesis.utorrent.server.setting.entry.UTorrentServerSettingEntry;
 
+/**
+ * UTorrent server implementation
+ * @author GoofyHTS
+ *
+ */
 public class UTorrentServer extends AbstractTorrentServer<UTorrentServerSetting,UTorrentServerSettingEntry> {
 	
+	/**
+	 * Constructor, using the default http client and Json parser
+	 * @param baseAddress Base URL of the UTorrent server
+	 * @param username Username of the UTorrent server
+	 * @param password Password of the UTorrent server
+	 */
 	public UTorrentServer(String baseAddress, String username, String password) {
 		super(new UTorrentServerRequest(baseAddress, new DefaultHttpClient(username, password), new GsonTorrentParser()));
 	}
 	
+	/**
+	 * Constructor, using the default Json parser
+	 * @param baseAddress Base URL of the UTorrent server
+	 * @param httpClient Http client used for requests
+	 */
 	public UTorrentServer(String baseAddress, TorrentHttpClient httpClient) {
 		super(new UTorrentServerRequest(baseAddress, httpClient, new GsonTorrentParser()));		
 	}
 	
+	/**
+	 * Constructor
+	 * @param baseAddress Base URL of the UTorrent server
+	 * @param httpClient Http client used for requests
+	 * @param jsonParser Json parser used to parse responses
+	 */
 	public UTorrentServer(String baseAddress, TorrentHttpClient httpClient, TorrentJsonParser jsonParser) {
 		super(new UTorrentServerRequest(baseAddress, httpClient, jsonParser));		
 	}

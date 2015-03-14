@@ -32,61 +32,9 @@ import goofyhts.torrentkinesis.utorrent.server.setting.entry.UTorrentServerSetti
 
 public class GeneralTest {
 
-	//@Test
+	@Test
 	public void test() {
-	 /*   UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui", new DefaultHttpClient("root", ""));
-		List<UTorrentServerSettingEntry> entries = uTorrentServer.getSettings();
-		for(UTorrentServerSettingEntry e : entries) {
-			System.out.println(e.getSettingName()+"="+e.getSettingValue() + " TYPE=" + e.getSettingType());
-		}*/
-		
-		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui","","");
-		
-		UTorrentServerSetting ts = uTorrentServer.getTorrentServerSetting();
-		
-		//for(UTorrentServerSettingEntry e : ts.getSettings())
-		//{
-		//	System.out.println(e.getSettingName() + "=" + e.getSettingValue());
-		//}
-		
-		//System.out.println("MAXUL=" + ts.getSetting("max_ul_rate").getSettingValue());
-		//System.out.println("MAXDL=" + ts.getSetting("max_dl_rate").getSettingValue());
-		
-		UTorrentServerSettingEntry se = ts.getSetting("max_dl_rate");
-		se.setValue("750");
-		
-		UTorrentServerSettingEntry se2 = ts.getSetting("max_ul_rate");
-		se2.setValue("850");
-		
-		List<UTorrentServerSettingEntry> ses = new ArrayList<UTorrentServerSettingEntry>();
-		ses.add(se);
-		ses.add(se2);
-
-		//ts.setSettings(ses);
-		
-		
-		//UTorrentServerSettingEntry entry1 = uTorrentServer.getSetting("max_dl_rate");
-		//UTorrentServerSettingEntry entry2 = uTorrentServer.getSetting("max_ul_rate");
-				
-		//System.out.println(entry1.getSettingValue());
-		//System.out.println(entry2.getSettingValue());
-		
-		//System.out.println(uTorrentServer.getSettings().getSetting("max_dl_rate").getSettingValue());
-		
-		//UTorrentServerSettingEntry entry = uTorrentServer.getSettings().getSetting("max_dl_rate");
-		//entry.setSettingValue("123"); //test changing setting		
-		//uTorrentServer.setSetting(entry);
-		
-		//UTorrentServerSettingEntry max_dl_rate = uTorrentServer.getSettings().getSetting("max_dl_rate");
-		//UTorrentServerSettingEntry max_ul_rate = uTorrentServer.getSettings().getSetting("max_ul_rate");
-		
-		//max_dl_rate.setSettingValue("123");
-		//max_ul_rate.setSettingValue("456");
-		
-		//List<TorrentServerSettingEntry> entries1 = new ArrayList<TorrentServerSettingEntry>();
-		//entries1.add(max_dl_rate);
-		//entries1.add(max_ul_rate);		
-			
-		//uTorrentServer.setSettings(entries1);
+		UTorrentServer uTorrentServer = new UTorrentServer("http://localhost:8150/gui","root","Whcinhry21#");	
+		uTorrentServer.getTorrentServerSetting().getSetting("max_dl_rate").setValue("999").save();
 	}
 }

@@ -21,11 +21,22 @@ package goofyhts.torrentkinesis.html.parser;
 
 import org.jsoup.Jsoup;
 
+/**
+ * HTML Parser utility class
+ * @author GoofyHTS
+ *
+ */
 public class HtmlParser {
 
 	private HtmlParser() {		
 	}
 	
+	/**
+	 * Gets a text from element by using the ID
+	 * @param html Input HTML
+	 * @param id The ID of the element
+	 * @return Text of the element
+	 */
 	public static String getElementTextById(String html, String id) {
 		return Jsoup.parse(html).getElementById(id).text();
 	}

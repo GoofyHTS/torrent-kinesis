@@ -20,9 +20,13 @@ SOFTWARE.
 package goofyhts.torrentkinesis.utorrent.server.setting.entry;
 
 import goofyhts.torrentkinesis.exception.InvalidTorrentServerSettingException;
+import goofyhts.torrentkinesis.torrent.server.request.TorrentServerRequest;
+import goofyhts.torrentkinesis.torrent.server.setting.entry.AbstractTorrentServerSettingEntry;
 import goofyhts.torrentkinesis.torrent.server.setting.entry.TorrentServerSettingEntry;
+import goofyhts.torrentkinesis.utorrent.constant.UTorrentServerConst;
+import goofyhts.torrentkinesis.utorrent.server.request.UTorrentServerRequest;
 
-public class UTorrentServerSettingEntry implements TorrentServerSettingEntry {
+public class UTorrentServerSettingEntry extends AbstractTorrentServerSettingEntry {
 	
 	public enum SETTING_TYPE {		
 		INTEGER,
@@ -44,13 +48,43 @@ public class UTorrentServerSettingEntry implements TorrentServerSettingEntry {
 	private SETTING_TYPE settingType;
 	private String settingValue;
 	
-	public UTorrentServerSettingEntry(String settingName, int settingType, String settingValue) {
+	public UTorrentServerSettingEntry(TorrentServerRequest torrentServerRequest, String settingName, int settingType, String settingValue) {
+		super(torrentServerRequest);
+		
 		this.settingName = settingName;
 		this.settingType = SETTING_TYPE.fromValue(settingType);
 		
 		validateOptionValue(settingValue);
 		
 		this.settingValue = settingValue;
+	}	
+
+	@Override
+	public String getName() {
+		return this.settingName;
+	}
+	
+	@Override
+	public String getValue() {
+		return this.settingValue;
+	}
+
+	@Override
+	public TorrentServerSettingEntry setValue(String value) {
+		validateOptionValue(value);
+		this.settingValue = value;
+		return this;
+	}
+	
+	@Override
+	public void save() {	
+		String url = UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_BASE_URL;
+		url = url + String.format(UTorrentServerConst.SET_TORRENT_SERVER_SETTINGS_PORTION_URL, this.getName(), this.getValue());
+		this.torrentServerRequest.getRequest(url);
+	}
+	
+	public SETTING_TYPE getSettingType() {
+		return this.settingType;
 	}
 	
 	private void validateOptionValue(String value) {
@@ -69,28 +103,5 @@ public class UTorrentServerSettingEntry implements TorrentServerSettingEntry {
 		catch(RuntimeException e) {
 			throw new InvalidTorrentServerSettingException(String.format("Type not valid for %s. Requires a %s data type.", this.settingName, this.settingType));
 		}
-	}
-
-	@Override
-	public String getName() {
-		return this.settingName;
-	}
-	
-	@Override
-	public String getValue() {
-		return this.settingValue;
-	}
-
-	@Override
-	public void setValue(String value) {
-		validateOptionValue(value);
-		this.settingValue = value;
-	}
-	
-	public SETTING_TYPE getSettingType() {
-		return this.settingType;
-	}
-	
-	public void save() {		
 	}
 }
